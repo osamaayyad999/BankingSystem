@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BankingSystem
+namespace Common.Migrations
 {
-    public partial class initdb : Migration
+    public partial class dll : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,31 +26,28 @@ namespace BankingSystem
                 name: "Accounts",
                 columns: table => new
                 {
-                    AccountDID = table.Column<Guid>(nullable: false),
-                    CustomerID = table.Column<int>(nullable: false),
+                    AccountID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerID = table.Column<Guid>(nullable: false),
                     AccountType = table.Column<string>(nullable: false),
                     AccountStatus = table.Column<bool>(nullable: false),
-                    AccountCreateTime = table.Column<DateTime>(nullable: false),
-                    AccountlastSeenTime = table.Column<DateTime>(nullable: false)
+                    AccountCreateTime = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accounts", x => x.AccountDID);
+                    table.PrimaryKey("PK_Accounts", x => x.AccountID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountID = table.Column<int>(nullable: false),
-                    CustomerFirstName = table.Column<string>(nullable: false),
-                    CustomerLastName = table.Column<string>(nullable: false),
+                    CustomerID = table.Column<Guid>(nullable: false),
+                    CustomerIdentity = table.Column<long>(nullable: false),
+                    CustomerName = table.Column<string>(nullable: false),
                     CustomerGender = table.Column<string>(nullable: false),
                     CustomerEmail = table.Column<string>(nullable: false),
-                    CustomerPhone = table.Column<int>(nullable: false),
-                    CustomerIdentity = table.Column<int>(nullable: false),
+                    CustomerPhone = table.Column<long>(nullable: false),
                     CustomerStatus = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>

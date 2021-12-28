@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankingSystem
+namespace Common
 {
-    public class Role
+    public class Department
     {
         [Key]
-        public int RoleID { get; set; }
-        public string RoleName { get; set; }
-        public bool RoleStatus { get; set; }
+        public int DepartmentID { get; set; }
+	    public string DepartmentName { get; set; }
+        public bool DepartmentStatus { get; set; }
     }
 }

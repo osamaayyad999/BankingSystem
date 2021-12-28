@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common;
 
-namespace BankingSystem
+namespace DAL
 {
     public class AdminDAL : IAdminDAL
     {
@@ -32,16 +33,26 @@ namespace BankingSystem
             return AdminDALInstance;
         }
 
-
+        #region[Add Customer Method]
+        /// <summary>
+        /// this method is to create a new customer in database
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="accountD"></param>
+        /// <param name="accountBalance"></param>
+        /// <returns>
+        /// custome id (guid) if the account is created
+        /// default guid if the customer is already exist
+        /// </returns>
         public Guid AddCustomer (Customer customer, AccountD accountD, AccountBalance accountBalance)
         {
             try {
-                /*var allCustomers = _dbContext.Customers.Select(c => c).ToList();
+                var allCustomers = _dbContext.Customers.Select(c => c).ToList();
                 foreach (Customer cust in allCustomers)
                 {
-                    if (cust.CustomerID == customer.CustomerID)
+                    if (cust.CustomerID == customer.CustomerID || cust.CustomerIdentity == customer.CustomerIdentity)
                         return new Guid();
-                }*/
+                }
 
                 _dbContext.Customers.Add(customer);
                 _dbContext.SaveChanges();
@@ -61,23 +72,30 @@ namespace BankingSystem
             }   
             
         }
+        #endregion
 
+
+        #region[Update Customer Method]
+        /// <summary>
+        /// this method is to update customer data in database
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="accountD"></param>
+        /// <param name="accountBalance"></param>
+        /// <returns>
+        /// true if the account is updated
+        /// false if the account is not updated
+        /// </returns>
         public bool UpdateCustomer (Customer customer, AccountD accountD, AccountBalance accountBalance)
         {
             try {
-
-                Console.WriteLine(customer.CustomerIdentity);
-
-                var getCustomer = from cust in _dbContext.Customers
-                                  select cust;
-                /*var getCustomer = (from cust in _dbContext.Customers
-                             where cust.CustomerIdentity == customer.CustomerIdentity
-                             select cust).FirstOrDefault();*/
-
-                if (getCustomer.Count() == 0)
+                var getCustomer = (from customers in _dbContext.Customers
+                             where customers.CustomerIdentity == customer.CustomerIdentity
+                             select customers).FirstOrDefault();
+                if (getCustomer == null)
                 {
                     return false;
-                }   
+                }
                 else
                 {
                     var CustomerBalance = (from customers in _dbContext.Customers
@@ -100,13 +118,22 @@ namespace BankingSystem
 
             }
             catch (Exception ex){
-                // Console.WriteLine(ex.ToString());
-                Console.WriteLine(ex.InnerException.Message.ToString());
+                Console.WriteLine(ex.ToString());
                 return false;
             }
 
         }
-       
+        #endregion
+
+        #region[Delete Customer Method (Change Status)]
+        /// <summary>
+        /// This method is to change status for customer account
+        /// </summary>
+        /// <param name="customerIdentity"></param>
+        /// <returns>
+        /// true if status is changed
+        /// false if status does not changed
+        /// </returns>
         public bool DeleteCustomer (long customerIdentity)
         {
             try {
@@ -134,9 +161,8 @@ namespace BankingSystem
                 Console.WriteLine(ex.ToString());
                 return false;
             }
-
-            
         }
-        
     }
+    #endregion
+
 }

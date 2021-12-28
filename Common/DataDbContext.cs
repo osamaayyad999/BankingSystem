@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankingSystem
+namespace Common
 {
     public class DataDbContext : DbContext
     {
@@ -18,9 +18,9 @@ namespace BankingSystem
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("server=localhost;Database=BankDb;Trusted_Connection=True;MultipleActiveResultSets=true;");
-            //optionsBuilder.UseSqlServer("Data Source = SD - WIN10 - OAYYAD; Database=BankDb; Trusted_Connection=True;MultipleActiveResultSets=true;");
-            optionsBuilder.UseSqlServer(@"Data Source = SD - WIN10 - OAYYAD; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
+            optionsBuilder.UseSqlServer("server=localhost;Database=BankDb;Trusted_Connection=True;MultipleActiveResultSets=true;");
+            //optionsBuilder.UseSqlServer("Data Source = SD-WIN10-OAYYAD; Database=BankDbdll; Trusted_Connection=True;MultipleActiveResultSets=true;");
         }
+
     }
 }

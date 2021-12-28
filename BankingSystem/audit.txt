@@ -1,1 +1,9 @@
-﻿
+
+
+Coustmer who has Id = 4297a7a3-59f0-4ab6-9cd4-deadee659a50 Created a new account at12/27/2021 8:19:31 PM
+
+Coustmer who has Id = e9806f86-b1ef-4c51-b466-ac723f87f1c1 Created a new account at12/27/2021 8:26:49 PM
+
+Coustmer who has Id = c9947542-1b38-472e-8be5-548cfe4889ce Created a new account at12/27/2021 8:46:15 PM
+
+Coustmer who has Id = 7380fd01-86c0-4b57-8c4b-cb6bb42f6a77 Created a new account at12/27/2021 8:46:56 PM

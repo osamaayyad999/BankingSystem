@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
-namespace BankingSystem
+using Controllers;
+namespace BankingSystem2
 {
 
     class BankSystem
@@ -127,7 +126,7 @@ namespace BankingSystem
         #region [Teller Menu]
         public void TellerMenu()
         {
-            AdminController adminController = new AdminController();
+            TellerController tellerController = new TellerController();
             Console.WriteLine("Welcome to Teller Menu\n\n"
                 + "1- Deposit\n"
                 + "2- Withdraw\n"
@@ -139,11 +138,11 @@ namespace BankingSystem
             {
                 switch (choice)
                 {
-                    case 0:
-                        Console.WriteLine("");
+                    case 1:
+                        tellerController.Deposit();
                         break;
                     case 2:
-                        Console.WriteLine("");
+                        tellerController.Withdraw();
                         break;
                     case 3:
                         flag = false;
@@ -158,5 +157,4 @@ namespace BankingSystem
         #endregion
 
     }
-
 } 

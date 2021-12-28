@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankingSystem
 {
-    public interface IAdminController
+    public interface ITellerController
     {
-        public void CreateAccount();
-        public void UpdateAccount();
-        public void DeleteAccount();
+        public void Deposit();
+        public void Withdraw();
     }
 }
