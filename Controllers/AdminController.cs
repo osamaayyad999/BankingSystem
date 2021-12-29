@@ -232,7 +232,7 @@ namespace Controllers
                 while (validate == false)
                 {
                     identity = long.Parse(Console.ReadLine());
-                    validate = Regex.IsMatch(_Identity.ToString(), @"^\d{9}$");
+                    validate = Regex.IsMatch(_Identity.ToString(), @"^\d$");
                     if (validate == false)
                         Console.WriteLine("Please Enter a valid Identity: ");
                     else

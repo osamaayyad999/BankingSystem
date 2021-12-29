@@ -89,10 +89,10 @@ namespace DAL
         public bool UpdateCustomer (Customer customer, AccountD accountD, AccountBalance accountBalance)
         {
             try {
-                var getCustomer = (from customers in _dbContext.Customers
+                var getCustomer = from customers in _dbContext.Customers
                              where customers.CustomerIdentity == customer.CustomerIdentity
-                             select customers).FirstOrDefault();
-                if (getCustomer == null)
+                             select customers;
+                if (getCustomer.Count() == 0)
                 {
                     return false;
                 }
@@ -110,12 +110,13 @@ namespace DAL
                         CustomerBalance.customers.CustomerPhone = customer.CustomerPhone;
                         CustomerBalance.accounts.AccountType = accountD.AccountType;
                         CustomerBalance.balances.AccountAmount = accountBalance.AccountAmount;
+                        _dbContext.SaveChanges();
+                        return true;
                     }
                 }
-                
 
-                return true;
 
+                return false;
             }
             catch (Exception ex){
                 Console.WriteLine(ex.ToString());

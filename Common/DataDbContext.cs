@@ -18,8 +18,8 @@ namespace Common
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=localhost;Database=BankDb;Trusted_Connection=True;MultipleActiveResultSets=true;");
-            //optionsBuilder.UseSqlServer("Data Source = SD-WIN10-OAYYAD; Database=BankDbdll; Trusted_Connection=True;MultipleActiveResultSets=true;");
+            //optionsBuilder.UseSqlServer("server=localhost;Database=BankDb;Trusted_Connection=True;MultipleActiveResultSets=true;");
+            optionsBuilder.UseSqlServer("Data Source = SD-WIN10-OAYYAD; Database=BankDb; Trusted_Connection=True;MultipleActiveResultSets=true;");
         }
 
     }
